@@ -1,31 +1,24 @@
 import React, { Component } from "react";
 import * as api from "../utils/api";
 import { Link } from "@reach/router";
-
+import AuthorFilter from "./AuthorFilter";
+import TopicFilter from "./TopicFilter";
 class Articles extends Component {
   state = {
-    articles: [],
-    topics: [],
     topic: "",
-    authors: [],
+    articles: [],
     author: "",
     isFilter: false,
   };
 
-  fetchArticles = (topic) => {
-    api.getAllArticles(topic).then((articles) => {
+  fetchArticles = (topic, author) => {
+    api.getAllArticles(topic, author).then((articles) => {
       this.setState({ articles });
-    });
-  };
-  fetchTopics = () => {
-    api.getTopics().then((topics) => {
-      this.setState({ topics });
     });
   };
 
   componentDidMount() {
     this.fetchArticles(this.state.topics);
-    this.fetchTopics();
   }
 
   handleChange = (changeEvent) => {
@@ -33,11 +26,31 @@ class Articles extends Component {
   };
   componentDidUpdate(prevProps, prevState) {
     if (prevState.topic !== this.state.topic) {
-      this.fetchArticles(this.state.topic);
+      this.fetchArticles(this.state.topic, this.state.author);
+    }
+    if (prevState.author !== this.state.author) {
+      this.fetchArticles(this.state.topic, this.state.author);
     }
   }
+  didAuthorChange = (dataFromFilter) => {
+    this.setState({ author: dataFromFilter });
+  };
+  didTopicChange = (dataFromFilter) => {
+    this.setState({ topic: dataFromFilter });
+  };
   changeFilterBar = (event) => {
     this.setState({ isFilter: !this.state.isFilter });
+  };
+
+  reset = () => {
+    this.setState((currrentState) => {
+      return {
+        ...currrentState,
+        topic: "",
+        author: "",
+        isFilter: !this.state.isFilter,
+      };
+    });
   };
   render() {
     return (
@@ -46,23 +59,15 @@ class Articles extends Component {
           <button onClick={this.changeFilterBar}>Filters</button>
         )}
         {this.state.isFilter && (
-          <form action="" onChange={this.handleChange}>
-            <label htmlFor="Topics">Topic</label>
-            <select name="topics" id="topics">
-              <option key="" value="">
-                all
-              </option>
-              {this.state.topics.map((topic) => {
-                return (
-                  <option
-                    key={`${topic.slug}`}
-                    value={`${topic.slug}`}
-                  >{`${topic.slug}`}</option>
-                );
-              })}
-            </select>
-          </form>
+          <div className="filters">
+            <TopicFilter isTopic={this.didTopicChange} />
+            <AuthorFilter isAuthor={this.didAuthorChange} />
+            <Link to="/articles">
+              <button onClick={this.reset}>Reset</button>
+            </Link>
+          </div>
         )}
+        <h2>{this.state.articles.length} articles</h2>
         <ul>
           {this.state.articles.map((article) => {
             return (

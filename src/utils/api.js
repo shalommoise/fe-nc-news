@@ -17,3 +17,11 @@ export const getTopics = () => {
       return topics.data.topics;
     });
 };
+
+export const getAuthors = () => {
+  return axios
+    .get("https://nc-news-shalom.herokuapp.com/api/users")
+    .then((users) => {
+      return users.data.users;
+    });
+};
