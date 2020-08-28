@@ -1,3 +1,19 @@
 .App {
   text-align: center;
 }
+
+ul {
+  max-width: 300px;
+}
+li {
+  list-style: none;
+  border: solid;
+  background-color: lightgrey;
+  width: 300px;
+
+  padding: 50px;
+  margin-left: 275px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 25px;
+}

@@ -13,6 +13,7 @@ function App() {
       <Router>
         <Home path="/" />
         <Articles path="/articles" />
+
         <LogIn path="/account" />
       </Router>
     </div>
