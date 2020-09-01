@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import * as api from "../utils/api";
 import Loader from "./Loader";
 import RatingButton from "./RatingButton";
+import ShowComments from "./ShowComments";
 class SingleArticle extends Component {
   state = {
     article: {},
@@ -41,10 +42,12 @@ class SingleArticle extends Component {
               <ul className="details">
                 <li className="details">Topic: {topic} </li>
                 <li className="details">Posted on : {created_at}</li>
-                <li className="details">Rating: {votes}</li>
-                <li className="details"> Comments: {comment_count}</li>
+                <li className="details">
+                  {" "}
+                  Comments: {comment_count} <ShowComments id={article_id} />
+                </li>
               </ul>
-              <RatingButton id={article_id} />
+              <RatingButton id={article_id} votes={votes} />
             </div>
           )
         )}

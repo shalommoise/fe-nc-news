@@ -33,3 +33,21 @@ export const getSingleArticle = (article_id) => {
       return article.data.article.article;
     });
 };
+
+export const updateVotes = (article_id, count) => {
+  return axios.patch(
+    `https://nc-news-shalom.herokuapp.com/api/articles/${article_id}`,
+    { inc_votes: count }
+  );
+};
+
+export const getCommentsOfArticle = (article_id) => {
+  console.log("ax");
+  return axios
+    .get(
+      `https://nc-news-shalom.herokuapp.com/api/articles/${article_id}/comments`
+    )
+    .then(({ data }) => {
+      return data.comments.comments;
+    });
+};
