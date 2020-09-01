@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import * as api from "../utils/api";
-
+import { Link } from "@reach/router";
 class AuthorFilter extends Component {
   state = {
     users: [],
+    clicked: false,
   };
 
   fetchAuthors = () => {
@@ -15,6 +16,10 @@ class AuthorFilter extends Component {
   handleChange = (changeEvent) => {
     this.setState({ user: changeEvent.target.value });
   };
+  handleClick = (event) => {
+    this.setState({ clicked: !this.state.clicked });
+    event.preventDefault();
+  };
   componentDidUpdate(prevProps, prevState) {
     if (prevState.user !== this.state.user) {
       const authorName = this.state.user;
@@ -25,22 +30,28 @@ class AuthorFilter extends Component {
     this.fetchAuthors();
   }
   render() {
+    const { clicked, users } = this.state;
     return (
       <div>
         <form action="" onChange={this.handleChange}>
-          {/* change this to use Link */}
-          <label htmlFor="users">Author: </label>
-          <select name="users" id="users">
-            <option value="">all</option>
-            {this.state.users.map((user) => {
+          {!clicked && (
+            <button htmlFor="authors" onClick={this.handleClick}>
+              Authors
+            </button>
+          )}
+
+          {clicked &&
+            users.map(({ username }) => {
               return (
-                <option
-                  key={`${user.username}`}
-                  value={`${user.username}`}
-                >{`${user.username}`}</option>
+                <Link
+                  to={`/articles/authors/${username}`}
+                  key={`${username}`}
+                  value={`${username}`}
+                >
+                  <button>{`${username}`}</button>
+                </Link>
               );
             })}
-          </select>
         </form>
       </div>
     );

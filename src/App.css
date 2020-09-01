@@ -2,11 +2,11 @@
   text-align: center;
 }
 
-ul {
+.longlist {
   display: grid;
   max-width: 300px;
 }
-li {
+.bigitem {
   list-style: none;
   border: solid;
   background-color: lightgrey;
@@ -17,4 +17,9 @@ li {
   /* margin-top: 10px;
   margin-bottom: 10px; */
   border-radius: 25px;
+}
+
+.details {
+  list-style: none;
+  text-align: left;
 }

@@ -6,9 +6,8 @@ import TopicFilter from "./TopicFilter";
 import Loader from "./Loader";
 class Articles extends Component {
   state = {
-    topic: "",
     articles: [],
-    author: "",
+
     isFilter: false,
     isLoading: true,
   };
@@ -25,18 +24,18 @@ class Articles extends Component {
   };
 
   componentDidMount() {
-    this.fetchArticles(this.state.topics);
+    this.fetchArticles(this.props.topic);
   }
 
   handleChange = (changeEvent) => {
     this.setState({ topic: changeEvent.target.value });
   };
   componentDidUpdate(prevProps, prevState) {
-    if (prevState.topic !== this.state.topic) {
-      this.fetchArticles(this.state.topic, this.state.author);
+    if (prevProps.topic !== this.props.topic) {
+      this.fetchArticles(this.props.topic, this.props.author);
     }
-    if (prevState.author !== this.state.author) {
-      this.fetchArticles(this.state.topic, this.state.author);
+    if (prevProps.author !== this.props.author) {
+      this.fetchArticles(this.props.topic, this.props.author);
     }
   }
 
@@ -82,16 +81,19 @@ class Articles extends Component {
         ) : (
           <h2>{this.state.articles.length} articles</h2>
         )}
-        <ul>
+        <ul className="longlist">
           {this.state.articles.map((article) => {
             return (
-              <li key={article.article_id}>
+              <li key={article.article_id} className="bigitem">
                 <div className="main">
                   <h3>{article.title}</h3>
                   <h3>By: {article.author}</h3>
                   <h4>Topic: {article.topic}</h4>
-                  <Link to={`/article/${article.article_id}`}></Link>{" "}
-                  <button>View Article</button>
+                  <Link to={`/article/${article.article_id}`}>
+                    <button article_id={article.article_id}>
+                      View Article
+                    </button>
+                  </Link>{" "}
                 </div>
                 <div className="comments">
                   <h5>Posted: {article.created_at}</h5>

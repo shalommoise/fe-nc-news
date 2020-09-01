@@ -4,6 +4,7 @@ import { Router } from "@reach/router";
 import Home from "./components/Home";
 import Articles from "./components/Articles";
 import LogIn from "./components/LogIn";
+import SingleArticle from "./components/SingleArticle";
 import "./App.css";
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
         <Articles path="/articles" />
         <Articles path="/articles/topics/:topic" />
         <Articles path="/articles/authors/:author" />
+        <SingleArticle path="/article/:article_id" />
         <LogIn path="/account" />
       </Router>
     </div>

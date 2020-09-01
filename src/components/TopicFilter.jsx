@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 import * as api from "../utils/api";
+import { Link } from "@reach/router";
 
 class TopicFilter extends Component {
   state = {
     topics: [],
+    clicked: false,
   };
 
   fetchTopics = () => {
@@ -13,6 +15,10 @@ class TopicFilter extends Component {
   };
   handleChange = (changeEvent) => {
     this.setState({ topic: changeEvent.target.value });
+  };
+  handleClick = (event) => {
+    this.setState({ clicked: !this.state.clicked });
+    event.preventDefault();
   };
   componentDidUpdate(prevProps, prevState) {
     if (prevState.topic !== this.state.topic) {
@@ -24,21 +30,30 @@ class TopicFilter extends Component {
     this.fetchTopics();
   }
   render() {
+    const { clicked, topics } = this.state;
     return (
       <div>
         <form action="" onChange={this.handleChange}>
-          <label htmlFor="topics">Topic: </label>
-          <select name="topics" id="topics">
-            <option value="">all</option>
-            {this.state.topics.map((topic) => {
+          {!clicked && (
+            <button htmlFor="topics" onClick={this.handleClick}>
+              Topics
+            </button>
+          )}
+          {clicked &&
+            topics.map((topic) => {
               return (
-                <option
+                <Link
                   key={`${topic.slug}`}
-                  value={`${topic.slug}`}
-                >{`${topic.slug}`}</option>
+                  to={`/articles/topics/${topic.slug}`}
+                >
+                  {" "}
+                  <button
+                    key={`${topic.slug}`}
+                    value={`${topic.slug}`}
+                  >{`${topic.slug}`}</button>{" "}
+                </Link>
               );
             })}
-          </select>
         </form>
       </div>
     );

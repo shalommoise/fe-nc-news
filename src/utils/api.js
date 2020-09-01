@@ -25,3 +25,11 @@ export const getAuthors = () => {
       return users.data.users;
     });
 };
+
+export const getSingleArticle = (article_id) => {
+  return axios
+    .get(`https://nc-news-shalom.herokuapp.com/api/articles/${article_id}`)
+    .then((article) => {
+      return article.data.article.article;
+    });
+};
