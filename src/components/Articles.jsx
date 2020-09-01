@@ -3,18 +3,25 @@ import * as api from "../utils/api";
 import { Link } from "@reach/router";
 import AuthorFilter from "./AuthorFilter";
 import TopicFilter from "./TopicFilter";
+import Loader from "./Loader";
 class Articles extends Component {
   state = {
     topic: "",
     articles: [],
     author: "",
     isFilter: false,
+    isLoading: true,
   };
 
   fetchArticles = (topic, author) => {
-    api.getAllArticles(topic, author).then((articles) => {
-      this.setState({ articles });
-    });
+    api
+      .getAllArticles(topic, author)
+      .then((articles) => {
+        this.setState({ articles });
+      })
+      .then(() => {
+        this.setState({ isLoading: false });
+      });
   };
 
   componentDidMount() {
@@ -32,6 +39,7 @@ class Articles extends Component {
       this.fetchArticles(this.state.topic, this.state.author);
     }
   }
+
   didAuthorChange = (dataFromFilter) => {
     this.setState({ author: dataFromFilter });
   };
@@ -52,6 +60,7 @@ class Articles extends Component {
       };
     });
   };
+
   render() {
     return (
       <div>
@@ -67,7 +76,12 @@ class Articles extends Component {
             </Link>
           </div>
         )}
-        <h2>{this.state.articles.length} articles</h2>
+
+        {this.state.isLoading ? (
+          <Loader />
+        ) : (
+          <h2>{this.state.articles.length} articles</h2>
+        )}
         <ul>
           {this.state.articles.map((article) => {
             return (

@@ -13,7 +13,8 @@ function App() {
       <Router>
         <Home path="/" />
         <Articles path="/articles" />
-
+        <Articles path="/articles/topics/:topic" />
+        <Articles path="/articles/authors/:author" />
         <LogIn path="/account" />
       </Router>
     </div>

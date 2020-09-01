@@ -28,6 +28,7 @@ class AuthorFilter extends Component {
     return (
       <div>
         <form action="" onChange={this.handleChange}>
+          {/* change this to use Link */}
           <label htmlFor="users">Author: </label>
           <select name="users" id="users">
             <option value="">all</option>
