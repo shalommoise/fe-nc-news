@@ -50,3 +50,15 @@ export const getCommentsOfArticle = (article_id) => {
       return data.comments.comments;
     });
 };
+
+export const deleteComment = (comment_id) => {
+  return axios.delete(
+    `https://nc-news-shalom.herokuapp.com/api/comments/${comment_id}`
+  );
+};
+export const postComment = (article_id, username, body) => {
+  return axios.post(
+    `https://nc-news-shalom.herokuapp.com/api/articles/${article_id}/comments`,
+    { username: username, body: body }
+  );
+};

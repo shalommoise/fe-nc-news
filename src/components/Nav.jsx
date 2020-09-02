@@ -11,7 +11,12 @@ class Nav extends Component {
           <button>Articles</button>
         </Link>
         <Link to="/account">
-          <button>Log in</button>
+          <button>
+            {" "}
+            {!this.props.loggedIn.name
+              ? "Log in"
+              : this.props.loggedIn.username}
+          </button>
         </Link>
       </div>
     );

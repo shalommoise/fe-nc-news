@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import * as api from "../utils/api";
+import { Link } from "@reach/router";
+
 // import Loader from "./Loader";
 class ShowComments extends Component {
   state = {
@@ -17,6 +19,7 @@ class ShowComments extends Component {
   handleChange = () => {
     this.fetchComments(this.props.id);
   };
+
   hideComments = () => {
     this.setState((currentState) => {
       return { seeComments: !this.state.seeComments };
@@ -34,20 +37,30 @@ class ShowComments extends Component {
             </button>
           )}
           {seeComments && (
-            <button onClick={this.hideComments} value="Hide Comments">
-              Hide Comments
-            </button>
+            <div>
+              <button onClick={this.hideComments} value="Hide Comments">
+                Hide Comments
+              </button>
+              <Link
+                comments={comments}
+                to={`/article/${this.props.id}/comments`}
+              >
+                <button>Show comment details</button>
+              </Link>
+              <Link to={`/article/${this.props.id}/comment`}>
+                <button>Post a comment</button>
+              </Link>
+            </div>
           )}
         </div>
 
         {this.state.seeComments && (
           <div>
-            <ul>
-              {" "}
+            <ol className="smallCommentsList">
               {comments.map((comment) => {
                 return <li key={comment.comment_id}>{comment.body}</li>;
               })}
-            </ul>{" "}
+            </ol>
           </div>
         )}
       </div>

@@ -20,7 +20,7 @@ class RatingButton extends Component {
   render() {
     return (
       <div>
-        <p> Like this article?</p>{" "}
+        <p> Like?</p>{" "}
         <button
           value="yes"
           onClick={this.handleClick}
@@ -59,7 +59,7 @@ class RatingButton extends Component {
             {" "}
             <img
               className="emoji"
-              src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Circle_-_black_simple.svg/1024px-Circle_-_black_simple.svg.png"
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR2d0XHO-9mWK20TFIBtx68ibt5EI9tgLbkeA&usqp=CAU"
               alt="nuetral"
             />
           </div>

@@ -7,20 +7,19 @@ const OrderBy = (props) => {
     <div>
       <div className="sortchoices">
         <Link to={`/articles/sort/created_at/${order}`}>
-          {" "}
-          <button>Date Posted</button>{" "}
+          <button>Date Posted</button>
         </Link>
         <Link to={`/articles/sort/author/${order}`}>
-          {" "}
-          <button>Author</button>{" "}
+          <button>Author</button>
         </Link>
         <Link to={`/articles/sort/title/${order}`}>
-          {" "}
-          <button>Title</button>{" "}
+          <button>Title</button>
         </Link>
         <Link to={`/articles/sort/votes/${order}`}>
-          {" "}
-          <button>Rating</button>{" "}
+          <button>Rating</button>
+        </Link>
+        <Link to={`/articles/sort/comment_count/${order}`}>
+          <button>Number of comments</button>
         </Link>
       </div>
     </div>

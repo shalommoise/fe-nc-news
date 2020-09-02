@@ -18,6 +18,7 @@ class SingleArticle extends Component {
     this.fetchArticle(this.props.article_id);
   }
   render() {
+    const { username } = this.props.loggedIn;
     const {
       article_id,
       title,
@@ -44,10 +45,19 @@ class SingleArticle extends Component {
                 <li className="details">Posted on : {created_at}</li>
                 <li className="details">
                   {" "}
-                  Comments: {comment_count} <ShowComments id={article_id} />
+                  Comments: {comment_count}{" "}
+                  <ShowComments id={article_id} username={username} />
                 </li>
               </ul>
-              <RatingButton id={article_id} votes={votes} />
+              <div className="ratingButton">
+                {username && author !== username && (
+                  <RatingButton id={article_id} votes={votes} />
+                )}
+                {!username && <h4>Please log in to rate an article</h4>}
+                {author === username && (
+                  <p id="cannotrate">You cannot rate your own articles</p>
+                )}
+              </div>
             </div>
           )
         )}

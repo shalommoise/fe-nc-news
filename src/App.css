@@ -39,3 +39,10 @@ ul {
 .mainUser {
   border: solid;
 }
+.button:hover {
+  background-color: #3e8e41;
+}
+.bigCommentItem {
+  margin: 10px;
+  border: dashed;
+}

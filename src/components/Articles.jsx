@@ -129,7 +129,9 @@ class Articles extends Component {
                 </div>
                 <div className="comments">
                   <h5>Posted: {article.created_at}</h5>
-                  <h6>Votes: {article.votes}</h6>
+                  <h6>
+                    Votes: {article.votes} comments: {article.comment_count}
+                  </h6>
                 </div>
               </li>
             );
