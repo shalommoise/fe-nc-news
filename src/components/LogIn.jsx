@@ -35,10 +35,10 @@ class LogIn extends Component {
     return (
       <div>
         {isLoading && <Loader />}
-        {user.name && (
+        {user.name ? (
           <div className="mainUser">
             <h2>Username: {user.username}</h2>
-            <h3>Name: {user.name}</h3>{" "}
+            <h3>Name: {user.name}</h3>
             <img
               className="avatarPics"
               src={user.avatar_url}
@@ -51,26 +51,35 @@ class LogIn extends Component {
             >
               Login as {user.username}
             </button>
+            <button
+              onClick={() => {
+                this.setState({ loggedIn: {}, user: {} });
+              }}
+            >
+              Log Out
+            </button>
+          </div>
+        ) : (
+          <div className="mainUser">
+            <h2>Pick a user</h2>
           </div>
         )}
         <ul>
-          {" "}
           {users.map((user) => {
             return (
               <li key={user.username} className="userlist">
-                {" "}
                 <button
                   onClick={() => {
                     this.setState({ user: user });
                   }}
                 >
                   <h4>Username: {user.username}</h4>
-                  <h5>Name: {user.name}</h5>{" "}
+                  <h5>Name: {user.name}</h5>
                   <img
                     className="avatarPics"
                     src={user.avatar_url}
                     alt={`${user.username}'s avatar`}
-                  />{" "}
+                  />
                 </button>
               </li>
             );
