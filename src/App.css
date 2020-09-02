@@ -26,3 +26,16 @@
 .emoji {
   max-width: 80px;
 }
+ul {
+  list-style: none;
+}
+
+.avatarPics {
+  max-width: 150px;
+}
+.userlist {
+  margin: 10px;
+}
+.mainUser {
+  border: solid;
+}

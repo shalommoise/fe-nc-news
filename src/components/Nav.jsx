@@ -11,7 +11,7 @@ class Nav extends Component {
           <button>Articles</button>
         </Link>
         <Link to="/account">
-          <button>Log in/ Sign Up</button>
+          <button>Log in</button>
         </Link>
       </div>
     );

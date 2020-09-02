@@ -23,27 +23,6 @@ const OrderBy = (props) => {
           <button>Rating</button>{" "}
         </Link>
       </div>
-      {/* <div className="asc/desc">
-          {this.state.order === "desc" ? (
-            <button
-              onClick={() => {
-                this.setState({ order: "asc" });
-              }}
-              id="asc"
-            >
-              ↑
-            </button>
-          ) : (
-            <button
-              onClick={() => {
-                this.setState({ order: "desc" });
-              }}
-              id="desc"
-            >
-              ↓
-            </button>
-          )}
-        </div> */}
     </div>
   );
 };

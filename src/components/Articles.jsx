@@ -86,6 +86,9 @@ class Articles extends Component {
             <div className="orders">
               {" "}
               <OrderBy order={this.state.order} />
+              <Link to="/articles">
+                <button onClick={this.reset}>Reset</button>
+              </Link>
             </div>
           )}
         </div>
