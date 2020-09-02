@@ -1,9 +1,10 @@
 import axios from "axios";
 
-export const getAllArticles = (topic, author) => {
+export const getAllArticles = (topic, author, sort_by, order) => {
+  console.log(order);
   return axios
     .get("https://nc-news-shalom.herokuapp.com/api/articles", {
-      params: { topic, author },
+      params: { topic, author, sort_by, order },
     })
     .then((articles) => {
       return articles.data.articles;
@@ -42,7 +43,6 @@ export const updateVotes = (article_id, count) => {
 };
 
 export const getCommentsOfArticle = (article_id) => {
-  console.log("ax");
   return axios
     .get(
       `https://nc-news-shalom.herokuapp.com/api/articles/${article_id}/comments`

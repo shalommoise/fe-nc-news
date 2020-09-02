@@ -16,6 +16,7 @@ function App() {
         <Articles path="/articles" />
         <Articles path="/articles/topics/:topic" />
         <Articles path="/articles/authors/:author" />
+        <Articles path="/articles/sort/:sort_by/:order" />
         <SingleArticle path="/article/:article_id" />
         <LogIn path="/account" />
       </Router>

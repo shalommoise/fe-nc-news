@@ -4,17 +4,20 @@ import { Link } from "@reach/router";
 import AuthorFilter from "./AuthorFilter";
 import TopicFilter from "./TopicFilter";
 import Loader from "./Loader";
+import OrderBy from "./OrderBy";
+import AscDescButton from "./AscDescButton";
 class Articles extends Component {
   state = {
     articles: [],
-
+    isOrder: false,
     isFilter: false,
     isLoading: true,
+    order: "desc",
   };
 
-  fetchArticles = (topic, author) => {
+  fetchArticles = (topic, author, sort_by, order) => {
     api
-      .getAllArticles(topic, author)
+      .getAllArticles(topic, author, sort_by, order)
       .then((articles) => {
         this.setState({ articles });
       })
@@ -24,26 +27,38 @@ class Articles extends Component {
   };
 
   componentDidMount() {
-    this.fetchArticles(this.props.topic);
+    const { topic, author, sort_by } = this.props;
+    this.fetchArticles(topic, author, sort_by, this.state.order);
   }
 
   handleChange = (changeEvent) => {
     this.setState({ topic: changeEvent.target.value });
   };
   componentDidUpdate(prevProps, prevState) {
-    if (prevProps.topic !== this.props.topic) {
-      this.fetchArticles(this.props.topic, this.props.author);
-    }
-    if (prevProps.author !== this.props.author) {
-      this.fetchArticles(this.props.topic, this.props.author);
+    const { topic, author, sort_by } = this.props;
+
+    if (
+      prevProps.topic !== topic ||
+      prevProps.author !== author ||
+      prevProps.sort_by !== sort_by ||
+      prevState.order !== this.state.order
+    ) {
+      this.fetchArticles(topic, author, sort_by, this.state.order);
     }
   }
-
+  showOrder = () => {
+    this.setState((currrentState) => {
+      return { isOrder: !this.state.isOrder };
+    });
+  };
   didAuthorChange = (dataFromFilter) => {
     this.setState({ author: dataFromFilter });
   };
   didTopicChange = (dataFromFilter) => {
     this.setState({ topic: dataFromFilter });
+  };
+  ascOrDesc = (dataFromAscDescButton) => {
+    this.setState({ order: dataFromAscDescButton });
   };
   changeFilterBar = (event) => {
     this.setState({ isFilter: !this.state.isFilter });
@@ -63,19 +78,33 @@ class Articles extends Component {
   render() {
     return (
       <div>
-        {!this.state.isFilter && (
-          <button onClick={this.changeFilterBar}>Filters</button>
-        )}
-        {this.state.isFilter && (
-          <div className="filters">
-            <TopicFilter isTopic={this.didTopicChange} />
-            <AuthorFilter isAuthor={this.didAuthorChange} />
-            <Link to="/articles">
-              <button onClick={this.reset}>Reset</button>
-            </Link>
-          </div>
-        )}
+        <AscDescButton order={this.state.order} isOrder={this.ascOrDesc} />
+        <div>
+          {!this.state.isOrder ? (
+            <button onClick={this.showOrder}>Order By</button>
+          ) : (
+            <div className="orders">
+              {" "}
+              <OrderBy order={this.state.order} />
+            </div>
+          )}
+        </div>
 
+        <div>
+          {!this.state.isFilter && (
+            <button onClick={this.changeFilterBar}>Filters</button>
+          )}
+
+          {this.state.isFilter && (
+            <div className="filters">
+              <TopicFilter isTopic={this.didTopicChange} />
+              <AuthorFilter isAuthor={this.didAuthorChange} />
+              <Link to="/articles">
+                <button onClick={this.reset}>Reset</button>
+              </Link>
+            </div>
+          )}
+        </div>
         {this.state.isLoading ? (
           <Loader />
         ) : (

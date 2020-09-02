@@ -1,20 +1,23 @@
 import React, { Component } from "react";
 import * as api from "../utils/api";
+// import Loader from "./Loader";
 class ShowComments extends Component {
   state = {
     comments: [],
     seeComments: false,
   };
   fetchComments = (article_id) => {
-    api
-      .getCommentsOfArticle(article_id)
-      .then((comments) => this.setState({ comments }));
+    api.getCommentsOfArticle(article_id).then((comments) =>
+      this.setState((currentState) => {
+        return { comments: comments, seeComments: !this.state.seeComments };
+      })
+    );
   };
 
-  showOrHide = ({ target: { value } }) => {
-    if (this.state.seeComments === true) {
-      this.fetchComments(this.props.id);
-    }
+  handleChange = () => {
+    this.fetchComments(this.props.id);
+  };
+  hideComments = () => {
     this.setState((currentState) => {
       return { seeComments: !this.state.seeComments };
     });
@@ -25,12 +28,16 @@ class ShowComments extends Component {
     return (
       <div>
         <div>
-          <button
-            onClick={this.showOrHide}
-            value={seeComments ? "Hide comments" : "Show Comments"}
-          >
-            {seeComments ? "Hide Comments" : "Show Comments"}
-          </button>
+          {!seeComments && (
+            <button onClick={this.handleChange} value="Show Comments">
+              Show Comments
+            </button>
+          )}
+          {seeComments && (
+            <button onClick={this.hideComments} value="Hide Comments">
+              Hide Comments
+            </button>
+          )}
         </div>
 
         {this.state.seeComments && (
