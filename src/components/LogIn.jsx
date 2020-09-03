@@ -37,6 +37,7 @@ class LogIn extends Component {
 
     event.preventDefault();
   };
+
   logOut = () => {
     localStorage.removeItem("username");
     localStorage.removeItem("name");

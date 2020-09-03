@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import * as api from "../utils/api";
 import { Link } from "@reach/router";
-import Loader from "./Loader";
 
 class MostTalkedAbout extends Component {
   state = {
@@ -23,7 +22,7 @@ class MostTalkedAbout extends Component {
     return (
       <div>
         {this.state.isLoading ? (
-          <Loader />
+          <p>Loading ...</p>
         ) : (
           <div>
             <strong> Most Talked About: </strong> <i> {title}</i>{" "}

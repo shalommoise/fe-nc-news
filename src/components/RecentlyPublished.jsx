@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import * as api from "../utils/api";
 import { Link } from "@reach/router";
-import Loader from "./Loader";
+
 class RecentlyPublished extends Component {
   state = {
     article: {},
@@ -22,7 +22,7 @@ class RecentlyPublished extends Component {
     return (
       <div>
         {this.state.isLoading ? (
-          <Loader />
+          <p>Loading ...</p>
         ) : (
           <div>
             <strong> Recently Published: </strong> <i> {title}</i>{" "}

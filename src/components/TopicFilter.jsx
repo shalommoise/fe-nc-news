@@ -46,11 +46,11 @@ class TopicFilter extends Component {
                   key={`${topic.slug}`}
                   to={`/articles/topics/${topic.slug}`}
                 >
-                  {" "}
                   <button
+                    className="topicsbutton"
                     key={`${topic.slug}`}
                     value={`${topic.slug}`}
-                  >{`${topic.slug}`}</button>{" "}
+                  >{`${topic.slug}`}</button>
                 </Link>
               );
             })}

@@ -18,13 +18,18 @@ const Home = (props) => {
   return (
     <div>
       <div className="greeting">
-        <p>
-          {whatTimeIsit()}. Welcome to NC-News: the most anticipated blogging
+        <p id="greeting">
+          {whatTimeIsit()} and welcome to NC-News: the most anticipated blogging
           site for coders, cookers and footballers! Please have a look around,
           don't be shy :)
         </p>
         <p>Be sure to comment on your favourite articles and leave a like :)</p>{" "}
-        {!username && <Link to="/account">Click here to log in</Link>}
+        {!username && (
+          <Link to="/account">
+            {" "}
+            <button> Please Log in to enjoy the full experience </button>
+          </Link>
+        )}
         {username && (
           <div className="mainUser">
             <h3>Username: {username}</h3>
@@ -48,7 +53,6 @@ const Home = (props) => {
         <h2>Articles</h2>
         <ul>
           <li>
-            {" "}
             <strong> Recently Viewed: </strong>
             <i> {title} </i>By: {author}{" "}
             <Link to={`/article/${article_id}`}>
@@ -59,6 +63,33 @@ const Home = (props) => {
           <li>{<MostTalkedAbout />}</li>
           <li>{<HighestRated />}</li>
         </ul>
+      </div>
+      <div className="gallery">
+        <Link to="/articles/topics/coding">
+          {" "}
+          <img
+            className="topic-images"
+            id="codingimage"
+            src="https://media.istockphoto.com/photos/programming-source-code-abstract-background-picture-id1047259374?k=6&m=1047259374&s=612x612&w=0&h=nG_krpdg_SonwCnxIOYShVLEidbLvukG9YrBUsRqVEQ="
+            alt="Coding Topics"
+          />{" "}
+        </Link>
+        <Link to="/articles/topics/cooking">
+          {" "}
+          <img
+            className="topic-images"
+            src="https://dwkujuq9vpuly.cloudfront.net/news/wp-content/uploads/2020/08/Vegetables-in-wok-615x369.jpg"
+            alt="cooking topics"
+          />{" "}
+        </Link>
+        <Link to="/articles/topics/football">
+          {" "}
+          <img
+            className="topic-images"
+            src="https://tbrfootball.com/static/uploads/27/2020/07/GettyImages-1253719881-400x240.jpg"
+            alt="football topics"
+          />{" "}
+        </Link>
       </div>
     </div>
   );

@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import * as api from "../utils/api";
 import { Link } from "@reach/router";
-import Loader from "./Loader";
 
 class HighestRated extends Component {
   state = {
@@ -23,7 +22,7 @@ class HighestRated extends Component {
     return (
       <div>
         {this.state.isLoading ? (
-          <Loader />
+          <p>Loading ...</p>
         ) : (
           <div>
             <strong> Highest Rated: </strong> <i> {title}</i>{" "}

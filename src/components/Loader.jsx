@@ -5,6 +5,10 @@ const Loader = () => {
     <div>
       {" "}
       <h2>Loading...</h2>
+      <img
+        src="https://upload.wikimedia.org/wikipedia/commons/9/92/Loading_icon_cropped.gif"
+        alt="Loading..."
+      />
     </div>
   );
 };

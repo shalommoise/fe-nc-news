@@ -65,17 +65,6 @@ class Articles extends Component {
     this.setState({ isFilter: !this.state.isFilter });
   };
 
-  reset = () => {
-    this.setState((currrentState) => {
-      return {
-        ...currrentState,
-        topic: "",
-        author: "",
-        isFilter: !this.state.isFilter,
-      };
-    });
-  };
-
   render() {
     return (
       <div>
@@ -85,11 +74,7 @@ class Articles extends Component {
             <button onClick={this.showOrder}>Order By</button>
           ) : (
             <div className="orders">
-              {" "}
               <OrderBy order={this.state.order} />
-              <Link to="/articles">
-                <button onClick={this.reset}>Reset</button>
-              </Link>
             </div>
           )}
         </div>
@@ -104,7 +89,7 @@ class Articles extends Component {
               <TopicFilter isTopic={this.didTopicChange} />
               <AuthorFilter isAuthor={this.didAuthorChange} />
               <Link to="/articles">
-                <button onClick={this.reset}>Reset</button>
+                <button>Reset</button>
               </Link>
             </div>
           )}
@@ -129,7 +114,7 @@ class Articles extends Component {
                   </Link>
                 </div>
                 <div className="comments">
-                  <h5>Time: {formatDate(article.created_at)}</h5>
+                  <h5>Published on: {formatDate(article.created_at)}</h5>
                   <h6>
                     Votes: {article.votes} comments: {article.comment_count}
                   </h6>

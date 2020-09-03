@@ -48,7 +48,7 @@ class AuthorFilter extends Component {
                   key={`${username}`}
                   value={`${username}`}
                 >
-                  <button>{`${username}`}</button>
+                  <button className="authorbuttons">{`${username}`}</button>
                 </Link>
               );
             })}
