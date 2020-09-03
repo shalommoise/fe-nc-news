@@ -4,6 +4,7 @@ import Loader from "./Loader";
 import RatingButton from "./RatingButton";
 import ShowComments from "./ShowComments";
 import { formatDate } from "../utils/util_funcs";
+import { navigate } from "@reach/router";
 class SingleArticle extends Component {
   state = {
     article: {},
@@ -19,6 +20,13 @@ class SingleArticle extends Component {
         localStorage.setItem("title", this.state.article.title);
         localStorage.setItem("author", this.state.article.author);
         localStorage.setItem("article_id", this.state.article.article_id);
+      })
+      .catch((err) => {
+        console.log(err);
+        navigate("/Err", {
+          state: { ErrorMessage: err },
+          replace: true,
+        });
       });
   };
 

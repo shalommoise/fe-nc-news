@@ -7,6 +7,7 @@ import LogIn from "./components/LogIn";
 import SingleArticle from "./components/SingleArticle";
 import CommentDetails from "./components/CommentDetails";
 import PostComment from "./components/PostComment";
+import ErrorPage from "./components/ErrorPage";
 import "./App.css";
 
 class App extends Component {
@@ -48,6 +49,7 @@ class App extends Component {
             path="/article/:article_id/comment"
             loggedIn={this.state.loggedIn}
           />
+          <ErrorPage default />
         </Router>
       </div>
     );

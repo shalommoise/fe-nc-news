@@ -34,6 +34,7 @@ class LogIn extends Component {
     localStorage.setItem("avatar_url", this.state.user.avatar_url);
 
     this.setState({ loggedIn: this.state.user });
+
     event.preventDefault();
   };
   logOut = () => {

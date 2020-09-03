@@ -2,20 +2,21 @@ import React, { Component } from "react";
 import * as api from "../utils/api";
 import { Link } from "@reach/router";
 import Loader from "./Loader";
-class RecentlyPublished extends Component {
+
+class MostTalkedAbout extends Component {
   state = {
     article: {},
     isLoading: true,
   };
 
-  articles = () =>
-    api.getAllArticles().then((articles) => {
+  articles = (topic, author, sort_by, order) =>
+    api.getAllArticles(topic, author, sort_by, order).then((articles) => {
       const article = articles[0];
       this.setState({ article, isLoading: false });
     });
 
   componentDidMount() {
-    this.articles();
+    this.articles(null, null, "comment_count", null);
   }
   render() {
     const { title, article_id } = this.state.article;
@@ -25,7 +26,7 @@ class RecentlyPublished extends Component {
           <Loader />
         ) : (
           <div>
-            <strong> Recently Published: </strong> <i> {title}</i>{" "}
+            <strong> Most Talked About: </strong> <i> {title}</i>{" "}
             <Link to={`/article/${article_id}`}>
               <button article_id={article_id}>View Article</button>
             </Link>{" "}
@@ -36,4 +37,4 @@ class RecentlyPublished extends Component {
   }
 }
 
-export default RecentlyPublished;
+export default MostTalkedAbout;

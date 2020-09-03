@@ -61,11 +61,9 @@ class PostComment extends Component {
           <Loader />
         ) : (
           <div>
-            <h2>
-              Post a comment on <u>{article.title}</u>
-            </h2>
+            <h2>Leave a comment</h2>
             <p>
-              This article currently has
+              The article <i>{article.title}</i> currently has
               <strong> {article.comment_count} </strong>
               comments
             </p>
@@ -75,9 +73,14 @@ class PostComment extends Component {
                   Logged in as <strong> {loggedIn.username}</strong>
                 </p>
                 <form action="">
-                  <label htmlFor="body">Comment: </label>
+                  <label htmlFor="body">Your comment: </label>
                   <input type="text" onChange={this.handleChange} />
-                  <button onClick={this.handleClick}>Post</button>
+                  <button
+                    disabled={!this.state.body}
+                    onClick={this.handleClick}
+                  >
+                    Post
+                  </button>
                 </form>
                 {success && (
                   <div>

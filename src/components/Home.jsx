@@ -3,7 +3,8 @@ import { Link } from "@reach/router";
 import { whatTimeIsit } from "../utils/util_funcs";
 import UserInfo from "./UserInfo";
 import RecentlyPublished from "./RecentlyPublished";
-
+import MostTalkedAbout from "./MostTalkedAbout";
+import HighestRated from "./HighestRated";
 const Home = (props) => {
   const title = localStorage.getItem("title");
   const author = localStorage.getItem("author");
@@ -47,16 +48,16 @@ const Home = (props) => {
         <h2>Articles</h2>
         <ul>
           <li>
-            <p>
-              {" "}
-              <strong> Recently Viewed: </strong>
-              <i> {title} </i>By: {author}{" "}
-              <Link to={`/article/${article_id}`}>
-                <button article_id={article_id}>View Article</button>
-              </Link>
-            </p>
+            {" "}
+            <strong> Recently Viewed: </strong>
+            <i> {title} </i>By: {author}{" "}
+            <Link to={`/article/${article_id}`}>
+              <button article_id={article_id}>View Article</button>
+            </Link>
           </li>
           <li> {<RecentlyPublished />} </li>
+          <li>{<MostTalkedAbout />}</li>
+          <li>{<HighestRated />}</li>
         </ul>
       </div>
     </div>
