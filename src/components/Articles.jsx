@@ -126,7 +126,7 @@ class Articles extends Component {
                     <button article_id={article.article_id}>
                       View Article
                     </button>
-                  </Link>{" "}
+                  </Link>
                 </div>
                 <div className="comments">
                   <h5>Time: {formatDate(article.created_at)}</h5>

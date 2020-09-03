@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import * as api from "../utils/api";
 import Loader from "./Loader";
+import UserInfo from "./UserInfo";
 
 class LogIn extends Component {
   state = {
     isLoading: true,
     users: [],
-    user: this.props.logged,
+    user: this.props.loggedIn,
     loggedIn: {},
   };
   fetchUsers = () => {
@@ -27,19 +28,20 @@ class LogIn extends Component {
       this.props.logged(logger);
     }
   }
-  setUser = () => {
+  setUser = (event) => {
     localStorage.setItem("username", this.state.user.username);
     localStorage.setItem("name", this.state.user.name);
     localStorage.setItem("avatar_url", this.state.user.avatar_url);
 
     this.setState({ loggedIn: this.state.user });
+    event.preventDefault();
   };
   logOut = () => {
     localStorage.removeItem("username");
     localStorage.removeItem("name");
     localStorage.removeItem("avatar_url");
 
-    this.setState({ loggedIn: {}, user: {} });
+    this.setState({ loggedIn: this.props.loggedIn, user: this.props.loggedIn });
   };
   componentDidMount() {
     this.fetchUsers();
@@ -48,8 +50,9 @@ class LogIn extends Component {
     const { users, user, isLoading } = this.state;
     return (
       <div>
-        {isLoading && <Loader />}
-        {user.name ? (
+        {isLoading ? (
+          <Loader />
+        ) : user.name ? (
           <div className="mainUser">
             <h2>Username: {user.username}</h2>
             <h3>Name: {user.name}</h3>
@@ -58,8 +61,11 @@ class LogIn extends Component {
               src={user.avatar_url}
               alt={`${user.username}'s avatar`}
             />
-            <button onClick={this.setUser}>Login as {user.username}</button>
-            <button onClick={this.logOut}>Log Out</button>
+            <form>
+              <button onClick={this.setUser}>Login as {user.username}</button>
+              <button onClick={this.logOut}>Log Out</button>
+            </form>
+            <UserInfo username={user.username} />
           </div>
         ) : (
           <div className="mainUser">

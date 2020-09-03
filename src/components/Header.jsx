@@ -4,7 +4,7 @@ const Header = (props) => {
   return (
     <div>
       <header>
-        <h1>Welcome to NC-News</h1>
+        <h1>NC-News</h1>
         <Nav loggedIn={props.logger} />
       </header>
     </div>

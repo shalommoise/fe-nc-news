@@ -15,10 +15,6 @@ class App extends Component {
       username: localStorage.getItem("username"),
       avatar_url: localStorage.getItem("avatar_url"),
       name: localStorage.getItem("name"),
-      // username: "tickle122",
-      // avatar_url:
-      //   "https://vignette.wikia.nocookie.net/mrmen/images/d/d6/Mr-Tickle-9a.png/revision/latest?cb=20180127221953",
-      // name: "Tom Tickle",
     },
   };
   haveUser = (loggerData) => {
@@ -30,7 +26,7 @@ class App extends Component {
       <div className="App">
         <Header logger={this.state.loggedIn} />
         <Router>
-          <Home path="/" />
+          <Home path="/" logger={this.state.loggedIn} />
           <Articles path="/articles" />
           <Articles path="/articles/topics/:topic" />
           <Articles path="/articles/authors/:author" />
@@ -39,7 +35,11 @@ class App extends Component {
             path="/article/:article_id"
             loggedIn={this.state.loggedIn}
           />
-          <LogIn path="/account" logged={this.haveUser} />
+          <LogIn
+            path="/account"
+            logged={this.haveUser}
+            loggedIn={this.state.loggedIn}
+          />
           <CommentDetails
             path="/article/:article_id/comments"
             loggedIn={this.state.loggedIn}

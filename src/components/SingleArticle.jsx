@@ -10,9 +10,16 @@ class SingleArticle extends Component {
     isLoading: true,
   };
   fetchArticle = (article_id) => {
-    api.getSingleArticle(article_id).then((article) => {
-      this.setState({ article, isLoading: false });
-    });
+    api
+      .getSingleArticle(article_id)
+      .then((article) => {
+        this.setState({ article, isLoading: false });
+      })
+      .then(() => {
+        localStorage.setItem("title", this.state.article.title);
+        localStorage.setItem("author", this.state.article.author);
+        localStorage.setItem("article_id", this.state.article.article_id);
+      });
   };
 
   componentDidMount() {

@@ -62,3 +62,11 @@ export const postComment = (article_id, username, body) => {
     { username: username, body: body }
   );
 };
+
+export const getAllComments = () => {
+  return axios
+    .get("https://nc-news-shalom.herokuapp.com/api/comments")
+    .then(({ data }) => {
+      return data.comments;
+    });
+};
