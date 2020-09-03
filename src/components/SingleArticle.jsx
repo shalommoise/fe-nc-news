@@ -3,6 +3,7 @@ import * as api from "../utils/api";
 import Loader from "./Loader";
 import RatingButton from "./RatingButton";
 import ShowComments from "./ShowComments";
+import { formatDate } from "../utils/util_funcs";
 class SingleArticle extends Component {
   state = {
     article: {},
@@ -42,7 +43,9 @@ class SingleArticle extends Component {
               <p>{body}</p>
               <ul className="details">
                 <li className="details">Topic: {topic} </li>
-                <li className="details">Posted on : {created_at}</li>
+                <li className="details">
+                  Posted on : {formatDate(created_at)}
+                </li>
                 <li className="details">
                   {" "}
                   Comments: {comment_count}{" "}

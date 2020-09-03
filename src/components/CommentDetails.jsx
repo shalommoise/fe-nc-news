@@ -3,6 +3,7 @@ import { Link } from "@reach/router";
 import * as api from "../utils/api";
 import Loader from "./Loader";
 import RatingButton from "./RatingButton";
+import { formatDate } from "../utils/util_funcs";
 class CommentDetails extends Component {
   state = { comments: [], isLoading: true };
   fetchComments = (article_id) => {
@@ -35,7 +36,10 @@ class CommentDetails extends Component {
     return (
       <div>
         <Link to={`/article/${this.props.article_id}`}>
-          <button>Back to Article</button>{" "}
+          <button>Back to Article</button>
+        </Link>
+        <Link to={`/article/${this.props.id}/comment`}>
+          <button>Post a comment</button>
         </Link>
         {isLoading && <Loader />}
         <ol className="bigCommentsList">
@@ -44,7 +48,8 @@ class CommentDetails extends Component {
               <li className="bigCommentItem" key={comment.comment_id}>
                 <p>{comment.body}</p>
                 <h5>
-                  Comment made by {comment.author} at {comment.created_at}
+                  Comment made by {comment.author} on{" "}
+                  {formatDate(comment.created_at)}
                 </h5>
                 <div className="ratingButton">
                   {username && comment.author !== username && (

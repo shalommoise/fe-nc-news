@@ -6,6 +6,7 @@ import TopicFilter from "./TopicFilter";
 import Loader from "./Loader";
 import OrderBy from "./OrderBy";
 import AscDescButton from "./AscDescButton";
+import { formatDate } from "../utils/util_funcs";
 class Articles extends Component {
   state = {
     articles: [],
@@ -128,7 +129,7 @@ class Articles extends Component {
                   </Link>{" "}
                 </div>
                 <div className="comments">
-                  <h5>Posted: {article.created_at}</h5>
+                  <h5>Time: {formatDate(article.created_at)}</h5>
                   <h6>
                     Votes: {article.votes} comments: {article.comment_count}
                   </h6>

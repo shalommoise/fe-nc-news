@@ -27,6 +27,20 @@ class LogIn extends Component {
       this.props.logged(logger);
     }
   }
+  setUser = () => {
+    localStorage.setItem("username", this.state.user.username);
+    localStorage.setItem("name", this.state.user.name);
+    localStorage.setItem("avatar_url", this.state.user.avatar_url);
+
+    this.setState({ loggedIn: this.state.user });
+  };
+  logOut = () => {
+    localStorage.removeItem("username");
+    localStorage.removeItem("name");
+    localStorage.removeItem("avatar_url");
+
+    this.setState({ loggedIn: {}, user: {} });
+  };
   componentDidMount() {
     this.fetchUsers();
   }
@@ -44,20 +58,8 @@ class LogIn extends Component {
               src={user.avatar_url}
               alt={`${user.username}'s avatar`}
             />
-            <button
-              onClick={() => {
-                this.setState({ loggedIn: user });
-              }}
-            >
-              Login as {user.username}
-            </button>
-            <button
-              onClick={() => {
-                this.setState({ loggedIn: {}, user: {} });
-              }}
-            >
-              Log Out
-            </button>
+            <button onClick={this.setUser}>Login as {user.username}</button>
+            <button onClick={this.logOut}>Log Out</button>
           </div>
         ) : (
           <div className="mainUser">
@@ -74,7 +76,7 @@ class LogIn extends Component {
                   }}
                 >
                   <h4>Username: {user.username}</h4>
-                  <h5>Name: {user.name}</h5>
+
                   <img
                     className="avatarPics"
                     src={user.avatar_url}

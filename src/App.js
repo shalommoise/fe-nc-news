@@ -12,6 +12,9 @@ import "./App.css";
 class App extends Component {
   state = {
     loggedIn: {
+      username: localStorage.getItem("username"),
+      avatar_url: localStorage.getItem("avatar_url"),
+      name: localStorage.getItem("name"),
       // username: "tickle122",
       // avatar_url:
       //   "https://vignette.wikia.nocookie.net/mrmen/images/d/d6/Mr-Tickle-9a.png/revision/latest?cb=20180127221953",
@@ -21,6 +24,7 @@ class App extends Component {
   haveUser = (loggerData) => {
     this.setState({ loggedIn: loggerData });
   };
+
   render() {
     return (
       <div className="App">

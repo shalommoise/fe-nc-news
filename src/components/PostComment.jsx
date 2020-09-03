@@ -2,12 +2,14 @@ import React, { Component } from "react";
 import Loader from "./Loader";
 import * as api from "../utils/api";
 import { Link } from "@reach/router";
+
 class PostComment extends Component {
   state = {
     isLoading: true,
     article: {},
     success: false,
     body: "",
+    comments: [],
   };
   fetchArticle = (article_id) => {
     api.getSingleArticle(article_id).then((article) => {
@@ -32,6 +34,7 @@ class PostComment extends Component {
         this.props.loggedIn.username,
         this.state.body
       );
+
       this.setState({
         article: {
           ...this.state.article,
@@ -44,23 +47,25 @@ class PostComment extends Component {
     this.fetchArticle(this.props.article_id);
   }
   render() {
-    const { isLoading, article, success } = this.state;
+    const { isLoading, article, success, body } = this.state;
     const { loggedIn, article_id } = this.props;
     return (
       <div>
         <Link to={`/article/${article_id}`}>
           <button>Back to Article</button>
         </Link>
+        <Link to={`/article/${this.props.id}/comments`}>
+          <button>Show more comments</button>
+        </Link>
         {isLoading ? (
           <Loader />
         ) : (
           <div>
-            {" "}
             <h2>
               Post a comment on <u>{article.title}</u>
             </h2>
             <p>
-              This article currently has{" "}
+              This article currently has
               <strong> {article.comment_count} </strong>
               comments
             </p>
@@ -76,8 +81,13 @@ class PostComment extends Component {
                 </form>
                 {success && (
                   <div>
-                    {" "}
                     <h2>Comment Posted</h2>
+                    {
+                      <p>
+                        {loggedIn.username} commented "{body}" on{" "}
+                        {article.title} at{" "}
+                      </p>
+                    }
                   </div>
                 )}
               </div>
