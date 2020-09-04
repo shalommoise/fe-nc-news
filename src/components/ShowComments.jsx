@@ -58,7 +58,11 @@ class ShowComments extends Component {
           <div>
             <ol className="smallCommentsList">
               {comments.map((comment) => {
-                return <li key={comment.comment_id}>{comment.body}</li>;
+                return (
+                  <li claasName="smallCommentsList" key={comment.comment_id}>
+                    {comment.body}
+                  </li>
+                );
               })}
             </ol>
           </div>

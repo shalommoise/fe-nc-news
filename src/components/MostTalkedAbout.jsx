@@ -25,9 +25,10 @@ class MostTalkedAbout extends Component {
           <p>Loading ...</p>
         ) : (
           <div>
-            <strong> Most Talked About: </strong> <i> {title}</i>{" "}
             <Link to={`/article/${article_id}`}>
-              <button article_id={article_id}>View Article</button>
+              <button className="articleshow" article_id={article_id}>
+                <strong> Most Talked About: </strong> <i> {title}</i>{" "}
+              </button>
             </Link>{" "}
           </div>
         )}

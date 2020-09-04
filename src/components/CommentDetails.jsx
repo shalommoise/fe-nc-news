@@ -45,7 +45,7 @@ class CommentDetails extends Component {
         <ol className="bigCommentsList">
           {comments.map((comment) => {
             return (
-              <li className="bigCommentItem" key={comment.comment_id}>
+              <li className="greeting" key={comment.comment_id}>
                 <p>{comment.body}</p>
                 <h5>
                   Comment made by {comment.author} on{" "}

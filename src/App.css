@@ -1,10 +1,14 @@
 .App {
   text-align: center;
   background-color: lightblue;
+  margin: 10px;
+  border: solid lightblue;
+  border-radius: 14px;
 }
 header {
   background-color: blue;
   padding: 20px;
+  border-radius: 14px;
 }
 h1 {
   color: white;
@@ -33,6 +37,9 @@ h1 {
 }
 .emoji {
   max-width: 80px;
+  border: solid;
+  border-radius: 50px;
+  margin: 5px;
 }
 ul {
   list-style: none;
@@ -45,13 +52,27 @@ ul {
   margin: 10px;
   border: solid blue;
   border-radius: 25px;
-  color: blue;
+  background-color: lightskyblue;
+  color: rgb(27, 27, 85);
+}
+.greeting {
+  margin: 10px;
+  padding: 5px;
+  border: solid blue;
+  border-radius: 25px;
+  background-color: white;
 }
 .mainUser {
   margin: 10px;
+  padding: 5px;
   border: solid blue;
   border-radius: 25px;
-  color: blue;
+}
+.articleshow {
+  padding: 20px;
+  margin: 10px;
+  border: solid blue;
+  border-radius: 10px;
 }
 .button:hover {
   background-color: #3e8e41;
@@ -78,12 +99,14 @@ ul {
   width: 30%;
   height: 200px;
   padding: 5px;
-  border: dashed purple;
+  margin: 5px;
+  border-radius: 25px;
+  border: solid blue;
 }
 .gallery {
   display: center;
-
-  border: solid purple;
+  border-radius: 25px;
+  border: solid blue;
 
   padding: 10px;
   /* block-size: 20px; */
@@ -93,4 +116,21 @@ ul {
   border: solid blue;
   border-radius: 25px;
   color: blue;
+}
+.reading {
+  text-align: left;
+  font-size: 25px;
+  margin: 10px;
+  padding: 20px;
+  border: solid blue;
+  border-radius: 25px;
+  background-color: white;
+}
+.details {
+  margin: 10px;
+  display: flex;
+  text-align: left;
+}
+.smallCommentsList {
+  padding: 20px;
 }

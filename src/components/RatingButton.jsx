@@ -19,7 +19,7 @@ class RatingButton extends Component {
 
   render() {
     return (
-      <div>
+      <div className="userlist">
         <p> Like?</p>{" "}
         <button
           value="yes"
@@ -36,34 +36,33 @@ class RatingButton extends Component {
           no :(
         </button>{" "}
         <h5>Current Rating {this.props.votes + this.state.changeCount}</h5>
-        {this.state.changeCount === 1 ? (
-          <div>
-            {" "}
-            <img
-              className="emoji"
-              src="https://cdn.shopify.com/s/files/1/1061/1924/products/Smiling_Face_Emoji_grande.png?v=1571606036"
-              alt="happy"
-            />
-          </div>
-        ) : this.state.changeCount === -1 ? (
-          <div>
-            {" "}
-            <img
-              className="emoji"
-              src="https://i.pinimg.com/originals/32/3e/3b/323e3b47f07fa1fb0a4b2ecb03b2c965.png"
-              alt="sad"
-            />
-          </div>
-        ) : (
-          <div>
-            {" "}
-            <img
-              className="emoji"
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR2d0XHO-9mWK20TFIBtx68ibt5EI9tgLbkeA&usqp=CAU"
-              alt="nuetral"
-            />
-          </div>
-        )}
+        <div>
+          {this.state.changeCount === 1 ? (
+            <div>
+              <img
+                className="emoji"
+                src="https://cdn.shopify.com/s/files/1/1061/1924/products/Smiling_Face_Emoji_grande.png?v=1571606036"
+                alt="happy"
+              />
+            </div>
+          ) : this.state.changeCount === -1 ? (
+            <div>
+              <img
+                className="emoji"
+                src="https://i.pinimg.com/originals/32/3e/3b/323e3b47f07fa1fb0a4b2ecb03b2c965.png"
+                alt="sad"
+              />
+            </div>
+          ) : (
+            <div>
+              <img
+                className="emoji"
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR2d0XHO-9mWK20TFIBtx68ibt5EI9tgLbkeA&usqp=CAU"
+                alt="nuetral"
+              />
+            </div>
+          )}
+        </div>
       </div>
     );
   }

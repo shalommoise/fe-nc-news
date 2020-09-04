@@ -108,16 +108,16 @@ class Articles extends Component {
               <li key={article.article_id} className="bigitem">
                 <div className="main">
                   <h3 id="title">{article.title}</h3>
-                  <h6 id="author">By: {article.author}</h6>
-                  <h6 id="topic">Topic: {article.topic}</h6>
+                  <p id="author">By: {article.author}</p>
+                  <p id="topic">Topic: {article.topic}</p>
                 </div>
                 <div className="comments">
-                  <h6 id="created_at">
+                  <p id="created_at">
                     Published on: {formatDate(article.created_at)}
-                  </h6>
-                  <h6 id="votes">
+                  </p>
+                  <p id="votes">
                     Rating: {article.votes} comments: {article.comment_count}
-                  </h6>
+                  </p>
                   <Link to={`/article/${article.article_id}`}>
                     <button
                       id="view_article_button"

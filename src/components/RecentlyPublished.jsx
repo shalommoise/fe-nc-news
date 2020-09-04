@@ -25,9 +25,13 @@ class RecentlyPublished extends Component {
           <p>Loading ...</p>
         ) : (
           <div>
-            <strong> Recently Published: </strong> <i> {title}</i>{" "}
             <Link to={`/article/${article_id}`}>
-              <button article_id={article_id}>View Article</button>
+              <button className="articleshow" article_id={article_id}>
+                <strong> Recently Published: </strong> <i> {title}</i>{" "}
+                {/* <button className="articleshow" article_id={article_id}>
+                View Article
+              </button> */}
+              </button>{" "}
             </Link>{" "}
           </div>
         )}

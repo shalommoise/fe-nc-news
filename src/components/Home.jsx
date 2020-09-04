@@ -7,7 +7,7 @@ import MostTalkedAbout from "./MostTalkedAbout";
 import HighestRated from "./HighestRated";
 const Home = (props) => {
   const title = localStorage.getItem("title");
-  const author = localStorage.getItem("author");
+
   const article_id = localStorage.getItem("article_id");
   const { username, name, avatar_url } = props.logger;
   const logOut = () => {
@@ -26,7 +26,6 @@ const Home = (props) => {
         <p>Be sure to comment on your favourite articles and leave a like :)</p>{" "}
         {!username && (
           <Link to="/account">
-            {" "}
             <button> Please Log in to enjoy the full experience </button>
           </Link>
         )}
@@ -49,16 +48,18 @@ const Home = (props) => {
         )}
         <Link to="/account"> </Link>
       </div>
-      <div className="recentlyViewedArticle">
+      <div className="mainUser">
         <h2>Articles</h2>
         <ul>
-          <li>
-            <strong> Recently Viewed: </strong>
-            <i> {title} </i>By: {author}{" "}
-            <Link to={`/article/${article_id}`}>
-              <button article_id={article_id}>View Article</button>
-            </Link>
-          </li>
+          <Link to={`/article/${article_id}`}>
+            <button className="articleshow" article_id={article_id}>
+              {" "}
+              <li>
+                <strong> Recently Viewed: </strong>
+                <i> {title} </i>
+              </li>{" "}
+            </button>
+          </Link>
           <li> {<RecentlyPublished />} </li>
           <li>{<MostTalkedAbout />}</li>
           <li>{<HighestRated />}</li>
@@ -66,7 +67,6 @@ const Home = (props) => {
       </div>
       <div className="gallery">
         <Link to="/articles/topics/coding">
-          {" "}
           <img
             className="topic-images"
             id="codingimage"
@@ -75,7 +75,6 @@ const Home = (props) => {
           />{" "}
         </Link>
         <Link to="/articles/topics/cooking">
-          {" "}
           <img
             className="topic-images"
             src="https://dwkujuq9vpuly.cloudfront.net/news/wp-content/uploads/2020/08/Vegetables-in-wok-615x369.jpg"
@@ -83,7 +82,6 @@ const Home = (props) => {
           />{" "}
         </Link>
         <Link to="/articles/topics/football">
-          {" "}
           <img
             className="topic-images"
             src="https://tbrfootball.com/static/uploads/27/2020/07/GettyImages-1253719881-400x240.jpg"

@@ -52,10 +52,10 @@ class SingleArticle extends Component {
         ) : (
           !this.state.isLoading && (
             <div>
-              <h1>{title}</h1>
+              <h2>{title}</h2>
               <h3>By {author}</h3>
 
-              <p>{body}</p>
+              <p className="reading">{body}</p>
               <ul className="details">
                 <li className="details">Topic: {topic} </li>
                 <li className="details">
