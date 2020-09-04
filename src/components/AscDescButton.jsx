@@ -18,7 +18,7 @@ class AscDescButton extends Component {
               this.setState({ order: "asc" });
             }}
           >
-            asc ↑
+            <p> asc ↑ </p>
           </button>
         ) : (
           <button
@@ -27,7 +27,7 @@ class AscDescButton extends Component {
               this.setState({ order: "desc" });
             }}
           >
-            desc ↓
+            <p> desc ↓ </p>
           </button>
         )}
       </div>

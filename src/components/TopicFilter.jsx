@@ -36,7 +36,7 @@ class TopicFilter extends Component {
         <form action="" onChange={this.handleChange}>
           {!clicked && (
             <button htmlFor="topics" onClick={this.handleClick}>
-              Topics
+              <p> Topics </p>
             </button>
           )}
           {clicked &&
@@ -50,7 +50,9 @@ class TopicFilter extends Component {
                     className="topicsbutton"
                     key={`${topic.slug}`}
                     value={`${topic.slug}`}
-                  >{`${topic.slug}`}</button>
+                  >
+                    <p>{`${topic.slug}`} </p>
+                  </button>
                 </Link>
               );
             })}

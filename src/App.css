@@ -9,26 +9,24 @@ header {
 h1 {
   color: white;
 }
-/* .greeting {
-  text-align: left;
-} */
-.longlist {
-  display: grid;
-  max-width: 300px;
+
+.main {
+  grid-area: main;
+}
+.comments {
+  grid-area: comments;
 }
 .bigitem {
-  list-style: none;
-  border: solid;
-  background-color: lightgrey;
-  /* width: 700px; */
-
-  padding: 50px;
-  margin-left: 275px;
-  /* margin-top: 10px;
-  margin-bottom: 10px; */
+  padding: 10px;
+  margin: 20px;
+  background-color: white;
+  border: solid blue;
   border-radius: 25px;
+  max-height: 300px;
 }
-
+#title {
+  color: blue;
+}
 .details {
   list-style: none;
   text-align: left;
@@ -45,9 +43,15 @@ ul {
 }
 .userlist {
   margin: 10px;
+  border: solid blue;
+  border-radius: 25px;
+  color: blue;
 }
 .mainUser {
-  border: solid;
+  margin: 10px;
+  border: solid blue;
+  border-radius: 25px;
+  color: blue;
 }
 .button:hover {
   background-color: #3e8e41;
@@ -83,4 +87,10 @@ ul {
 
   padding: 10px;
   /* block-size: 20px; */
+}
+.filterorder {
+  margin: 10px;
+  border: solid blue;
+  border-radius: 25px;
+  color: blue;
 }

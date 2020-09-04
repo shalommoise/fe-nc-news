@@ -68,56 +68,64 @@ class Articles extends Component {
   render() {
     return (
       <div>
-        <AscDescButton order={this.state.order} isOrder={this.ascOrDesc} />
-        <div>
-          {!this.state.isOrder ? (
-            <button onClick={this.showOrder}>Order By</button>
-          ) : (
-            <div className="orders">
-              <OrderBy order={this.state.order} />
-            </div>
-          )}
-        </div>
+        <div className="filterorder">
+          <AscDescButton order={this.state.order} isOrder={this.ascOrDesc} />
+          <div>
+            {!this.state.isOrder ? (
+              <button onClick={this.showOrder}>
+                <p> Order By </p>
+              </button>
+            ) : (
+              <div className="orders">
+                <OrderBy order={this.state.order} />
+              </div>
+            )}
+          </div>
 
-        <div>
-          {!this.state.isFilter && (
-            <button onClick={this.changeFilterBar}>Filters</button>
-          )}
+          <div>
+            {!this.state.isFilter && (
+              <button onClick={this.changeFilterBar}>
+                <p> Filters </p>
+              </button>
+            )}
 
-          {this.state.isFilter && (
-            <div className="filters">
-              <TopicFilter isTopic={this.didTopicChange} />
-              <AuthorFilter isAuthor={this.didAuthorChange} />
-              <Link to="/articles">
-                <button>Reset</button>
-              </Link>
-            </div>
-          )}
+            {this.state.isFilter && (
+              <div className="filters">
+                <TopicFilter isTopic={this.didTopicChange} />
+                <AuthorFilter isAuthor={this.didAuthorChange} />
+              </div>
+            )}
+          </div>
         </div>
         {this.state.isLoading ? (
           <Loader />
         ) : (
-          <h2>{this.state.articles.length} articles</h2>
+          <h2>Showing {this.state.articles.length} articles</h2>
         )}
         <ul className="longlist">
           {this.state.articles.map((article) => {
             return (
               <li key={article.article_id} className="bigitem">
                 <div className="main">
-                  <h3>{article.title}</h3>
-                  <h3>By: {article.author}</h3>
-                  <h4>Topic: {article.topic}</h4>
+                  <h3 id="title">{article.title}</h3>
+                  <h6 id="author">By: {article.author}</h6>
+                  <h6 id="topic">Topic: {article.topic}</h6>
+                </div>
+                <div className="comments">
+                  <h6 id="created_at">
+                    Published on: {formatDate(article.created_at)}
+                  </h6>
+                  <h6 id="votes">
+                    Rating: {article.votes} comments: {article.comment_count}
+                  </h6>
                   <Link to={`/article/${article.article_id}`}>
-                    <button article_id={article.article_id}>
+                    <button
+                      id="view_article_button"
+                      article_id={article.article_id}
+                    >
                       View Article
                     </button>
                   </Link>
-                </div>
-                <div className="comments">
-                  <h5>Published on: {formatDate(article.created_at)}</h5>
-                  <h6>
-                    Votes: {article.votes} comments: {article.comment_count}
-                  </h6>
                 </div>
               </li>
             );

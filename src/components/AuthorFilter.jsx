@@ -36,7 +36,7 @@ class AuthorFilter extends Component {
         <form action="" onChange={this.handleChange}>
           {!clicked && (
             <button htmlFor="authors" onClick={this.handleClick}>
-              Authors
+              <p> Authors</p>
             </button>
           )}
 
@@ -48,7 +48,9 @@ class AuthorFilter extends Component {
                   key={`${username}`}
                   value={`${username}`}
                 >
-                  <button className="authorbuttons">{`${username}`}</button>
+                  <button className="authorbuttons">
+                    <p> {`${username}`} </p>
+                  </button>
                 </Link>
               );
             })}
