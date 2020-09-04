@@ -8,14 +8,14 @@ class MostTalkedAbout extends Component {
     isLoading: true,
   };
 
-  articles = (topic, author, sort_by, order) =>
+  fetchArticles = (topic, author, sort_by, order) =>
     api.getAllArticles(topic, author, sort_by, order).then((articles) => {
       const article = articles[0];
       this.setState({ article, isLoading: false });
     });
 
   componentDidMount() {
-    this.articles(null, null, "comment_count", null);
+    this.fetchArticles(null, null, "comment_count", null);
   }
   render() {
     const { title, article_id } = this.state.article;
@@ -27,9 +27,9 @@ class MostTalkedAbout extends Component {
           <div>
             <Link to={`/article/${article_id}`}>
               <button className="articleshow" article_id={article_id}>
-                <strong> Most Talked About: </strong> <i> {title}</i>{" "}
+                <strong> Most Talked About: </strong> <i> {title}</i>
               </button>
-            </Link>{" "}
+            </Link>
           </div>
         )}
       </div>

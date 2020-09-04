@@ -10,7 +10,7 @@ class AscDescButton extends Component {
   };
   render() {
     return (
-      <div className="asc/desc">
+      <div>
         {this.props.order === "desc" ? (
           <button
             className="asc"

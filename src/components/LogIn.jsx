@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import * as api from "../utils/api";
 import Loader from "./Loader";
-import UserInfo from "./UserInfo";
+// import UserInfo from "./UserInfo";
 
 class LogIn extends Component {
   state = {
     isLoading: true,
     users: [],
-    user: this.props.loggedIn,
+    user: {},
     loggedIn: {},
   };
   fetchUsers = () => {
@@ -28,10 +28,11 @@ class LogIn extends Component {
       this.props.logged(logger);
     }
   }
-  setUser = (event) => {
-    localStorage.setItem("username", this.state.user.username);
-    localStorage.setItem("name", this.state.user.name);
-    localStorage.setItem("avatar_url", this.state.user.avatar_url);
+  setUserLogin = (event) => {
+    const { avatar_url, name, username } = this.state.user;
+    localStorage.setItem("username", username);
+    localStorage.setItem("name", name);
+    localStorage.setItem("avatar_url", avatar_url);
 
     this.setState({ loggedIn: this.state.user });
 
@@ -64,10 +65,12 @@ class LogIn extends Component {
               alt={`${user.username}'s avatar`}
             />
             <form>
-              <button onClick={this.setUser}>Login as {user.username}</button>
+              <button onClick={this.setUserLogin}>
+                Login as {user.username}
+              </button>
               <button onClick={this.logOut}>Log Out</button>
             </form>
-            <UserInfo username={user.username} />
+            {/* <UserInfo username={user.username} /> */}
           </div>
         ) : (
           <div className="mainUser">

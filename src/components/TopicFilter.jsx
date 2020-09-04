@@ -32,11 +32,11 @@ class TopicFilter extends Component {
   render() {
     const { clicked, topics } = this.state;
     return (
-      <div>
+      <div className="filterorder">
         <form action="" onChange={this.handleChange}>
           {!clicked && (
             <button htmlFor="topics" onClick={this.handleClick}>
-              <p> Topics </p>
+              <p>Filter by Topic </p>
             </button>
           )}
           {clicked &&

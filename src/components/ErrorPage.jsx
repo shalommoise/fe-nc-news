@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-// import Err from "./Err";
+
 class ErrorPage extends Component {
   state = { info: null, err: null };
   componentDidMount = (err) => {

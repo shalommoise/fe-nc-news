@@ -32,11 +32,11 @@ class AuthorFilter extends Component {
   render() {
     const { clicked, users } = this.state;
     return (
-      <div>
+      <div className="filterorder">
         <form action="" onChange={this.handleChange}>
           {!clicked && (
             <button htmlFor="authors" onClick={this.handleClick}>
-              <p> Authors</p>
+              <p>Filter by Author</p>
             </button>
           )}
 
@@ -48,7 +48,7 @@ class AuthorFilter extends Component {
                   key={`${username}`}
                   value={`${username}`}
                 >
-                  <button className="authorbuttons">
+                  <button className="topicsbutton">
                     <p> {`${username}`} </p>
                   </button>
                 </Link>

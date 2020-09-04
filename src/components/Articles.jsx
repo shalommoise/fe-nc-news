@@ -1,30 +1,25 @@
 import React, { Component } from "react";
 import * as api from "../utils/api";
-import { Link } from "@reach/router";
+
 import AuthorFilter from "./AuthorFilter";
 import TopicFilter from "./TopicFilter";
 import Loader from "./Loader";
 import OrderBy from "./OrderBy";
 import AscDescButton from "./AscDescButton";
-import { formatDate } from "../utils/util_funcs";
+import ArticleCard from "./ArticleCard";
+import SearchError from "./SearchError";
 class Articles extends Component {
   state = {
     articles: [],
     isOrder: false,
-    isFilter: false,
     isLoading: true,
     order: "desc",
   };
 
   fetchArticles = (topic, author, sort_by, order) => {
-    api
-      .getAllArticles(topic, author, sort_by, order)
-      .then((articles) => {
-        this.setState({ articles });
-      })
-      .then(() => {
-        this.setState({ isLoading: false });
-      });
+    api.getAllArticles(topic, author, sort_by, order).then((articles) => {
+      this.setState({ articles, isLoading: false });
+    });
   };
 
   componentDidMount() {
@@ -61,76 +56,51 @@ class Articles extends Component {
   ascOrDesc = (dataFromAscDescButton) => {
     this.setState({ order: dataFromAscDescButton });
   };
-  changeFilterBar = (event) => {
-    this.setState({ isFilter: !this.state.isFilter });
-  };
 
   render() {
+    const { articles, isOrder, isLoading, order } = this.state;
     return (
       <div>
         <div className="filterorder">
-          <AscDescButton order={this.state.order} isOrder={this.ascOrDesc} />
-          <div>
-            {!this.state.isOrder ? (
-              <button onClick={this.showOrder}>
-                <p> Order By </p>
-              </button>
-            ) : (
-              <div className="orders">
-                <OrderBy order={this.state.order} />
-              </div>
-            )}
-          </div>
-
-          <div>
-            {!this.state.isFilter && (
-              <button onClick={this.changeFilterBar}>
-                <p> Filters </p>
-              </button>
-            )}
-
-            {this.state.isFilter && (
-              <div className="filters">
-                <TopicFilter isTopic={this.didTopicChange} />
-                <AuthorFilter isAuthor={this.didAuthorChange} />
-              </div>
-            )}
-          </div>
+          <AscDescButton order={order} isOrder={this.ascOrDesc} />
         </div>
-        {this.state.isLoading ? (
+        <div className="filterorder">
+          {!isOrder ? (
+            <button onClick={this.showOrder}>
+              <p> Order By </p>
+            </button>
+          ) : (
+            <div className="orders">
+              <OrderBy order={isOrder} />
+            </div>
+          )}
+        </div>
+
+        <div className="filters">
+          <TopicFilter isTopic={this.didTopicChange} />
+          <AuthorFilter isAuthor={this.didAuthorChange} />
+        </div>
+
+        {isLoading ? (
           <Loader />
         ) : (
-          <h2>Showing {this.state.articles.length} articles</h2>
+          <SearchError
+            articles={articles}
+            topic={this.props.topic}
+            author={this.props.author}
+          />
         )}
-        <ul className="longlist">
-          {this.state.articles.map((article) => {
-            return (
-              <li key={article.article_id} className="bigitem">
-                <div className="main">
-                  <h3 id="title">{article.title}</h3>
-                  <p id="author">By: {article.author}</p>
-                  <p id="topic">Topic: {article.topic}</p>
-                </div>
-                <div className="comments">
-                  <p id="created_at">
-                    Published on: {formatDate(article.created_at)}
-                  </p>
-                  <p id="votes">
-                    Rating: {article.votes} comments: {article.comment_count}
-                  </p>
-                  <Link to={`/article/${article.article_id}`}>
-                    <button
-                      id="view_article_button"
-                      article_id={article.article_id}
-                    >
-                      View Article
-                    </button>
-                  </Link>
-                </div>
-              </li>
-            );
-          })}
-        </ul>
+        {!isLoading && (
+          <ul className="longlist">
+            {articles.map((article) => {
+              return (
+                <li key={article.article_id} className="bigitem">
+                  <ArticleCard article={article} />
+                </li>
+              );
+            })}
+          </ul>
+        )}
       </div>
     );
   }

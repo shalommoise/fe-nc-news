@@ -8,14 +8,14 @@ class HighestRated extends Component {
     isLoading: true,
   };
 
-  articles = (topic, author, sort_by, order) =>
+  fetchArticles = (topic, author, sort_by, order) =>
     api.getAllArticles(topic, author, sort_by, order).then((articles) => {
       const article = articles[0];
       this.setState({ article, isLoading: false });
     });
 
   componentDidMount() {
-    this.articles(null, null, "votes", null);
+    this.fetchArticles(null, null, "votes", null);
   }
   render() {
     const { title, article_id } = this.state.article;

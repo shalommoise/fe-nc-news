@@ -8,14 +8,14 @@ class RecentlyPublished extends Component {
     isLoading: true,
   };
 
-  articles = () =>
+  FetchArticles = () =>
     api.getAllArticles().then((articles) => {
       const article = articles[0];
       this.setState({ article, isLoading: false });
     });
 
   componentDidMount() {
-    this.articles();
+    this.FetchArticles();
   }
   render() {
     const { title, article_id } = this.state.article;
@@ -27,12 +27,9 @@ class RecentlyPublished extends Component {
           <div>
             <Link to={`/article/${article_id}`}>
               <button className="articleshow" article_id={article_id}>
-                <strong> Recently Published: </strong> <i> {title}</i>{" "}
-                {/* <button className="articleshow" article_id={article_id}>
-                View Article
-              </button> */}
-              </button>{" "}
-            </Link>{" "}
+                <strong> Recently Published: </strong> <i> {title}</i>
+              </button>
+            </Link>
           </div>
         )}
       </div>

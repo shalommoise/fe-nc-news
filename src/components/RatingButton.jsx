@@ -20,7 +20,7 @@ class RatingButton extends Component {
   render() {
     return (
       <div className="userlist">
-        <p> Like?</p>{" "}
+        <p> Like?</p>
         <button
           value="yes"
           onClick={this.handleClick}
@@ -34,7 +34,7 @@ class RatingButton extends Component {
           disabled={this.state.changeCount === -1}
         >
           no :(
-        </button>{" "}
+        </button>
         <h5>Current Rating {this.props.votes + this.state.changeCount}</h5>
         <div>
           {this.state.changeCount === 1 ? (

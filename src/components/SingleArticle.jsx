@@ -5,6 +5,7 @@ import RatingButton from "./RatingButton";
 import ShowComments from "./ShowComments";
 import { formatDate } from "../utils/util_funcs";
 import { navigate } from "@reach/router";
+import { Link } from "@reach/router";
 class SingleArticle extends Component {
   state = {
     article: {},
@@ -22,7 +23,6 @@ class SingleArticle extends Component {
         localStorage.setItem("article_id", this.state.article.article_id);
       })
       .catch((err) => {
-        console.log(err);
         navigate("/Err", {
           state: { ErrorMessage: err },
           replace: true,
@@ -53,7 +53,9 @@ class SingleArticle extends Component {
           !this.state.isLoading && (
             <div>
               <h2>{title}</h2>
-              <h3>By {author}</h3>
+              <h3>
+                By <i> {author} </i>
+              </h3>
 
               <p className="reading">{body}</p>
               <ul className="details">
@@ -61,10 +63,12 @@ class SingleArticle extends Component {
                 <li className="details">
                   Posted on : {formatDate(created_at)}
                 </li>
-                <li className="details">
-                  {" "}
-                  Comments: {comment_count}{" "}
+                <li className="details"> Comments: {comment_count}</li>
+                <li className="commentdetails">
                   <ShowComments id={article_id} username={username} />
+                  <Link to={`/article/${article_id}/comment`}>
+                    <button>Post a comment</button>
+                  </Link>
                 </li>
               </ul>
               <div className="ratingButton">

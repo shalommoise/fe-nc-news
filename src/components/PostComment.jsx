@@ -54,7 +54,7 @@ class PostComment extends Component {
         <Link to={`/article/${article_id}`}>
           <button>Back to Article</button>
         </Link>
-        <Link to={`/article/${this.props.id}/comments`}>
+        <Link to={`/article/${this.props.article_id}/comments`}>
           <button>Show more comments</button>
         </Link>
         {isLoading ? (
@@ -87,8 +87,9 @@ class PostComment extends Component {
                     <h2>Comment Posted</h2>
                     {
                       <p>
-                        {loggedIn.username} commented "{body}" on{" "}
-                        {article.title} at{" "}
+                        <b> {loggedIn.username}</b> commented <i> "{body}" </i>{" "}
+                        on
+                        <b> {article.title} </b>
                       </p>
                     }
                   </div>

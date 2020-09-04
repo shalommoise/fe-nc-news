@@ -23,19 +23,16 @@ const OrderBy = (props) => {
         </Link>
         <Link to={`/articles/sort/votes/${order}`}>
           <button className="orderbuttons">
-            {" "}
             <p> Rating </p>
           </button>
         </Link>
         <Link to={`/articles/sort/comment_count/${order}`}>
           <button className="orderbuttons">
-            {" "}
             <p> Comments </p>
           </button>
         </Link>
         <Link to="/articles">
           <button className="orderbuttons">
-            {" "}
             <p> Reset </p>
           </button>
         </Link>

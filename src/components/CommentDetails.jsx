@@ -38,7 +38,7 @@ class CommentDetails extends Component {
         <Link to={`/article/${this.props.article_id}`}>
           <button>Back to Article</button>
         </Link>
-        <Link to={`/article/${this.props.id}/comment`}>
+        <Link to={`/article/${this.props.article_id}/comment`}>
           <button>Post a comment</button>
         </Link>
         {isLoading && <Loader />}
@@ -46,7 +46,9 @@ class CommentDetails extends Component {
           {comments.map((comment) => {
             return (
               <li className="greeting" key={comment.comment_id}>
-                <p>{comment.body}</p>
+                <p>
+                  <i> {comment.body} </i>
+                </p>
                 <h5>
                   Comment made by {comment.author} on{" "}
                   {formatDate(comment.created_at)}

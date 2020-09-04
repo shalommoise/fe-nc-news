@@ -16,7 +16,7 @@ class ShowComments extends Component {
     );
   };
 
-  handleChange = () => {
+  handleClick = () => {
     this.fetchComments(this.props.id);
   };
 
@@ -29,10 +29,10 @@ class ShowComments extends Component {
   render() {
     const { comments, seeComments } = this.state;
     return (
-      <div>
+      <div className="commentButton">
         <div>
           {!seeComments && (
-            <button onClick={this.handleChange} value="Show Comments">
+            <button onClick={this.handleClick} value="Show Comments">
               Show Comments
             </button>
           )}
@@ -47,9 +47,6 @@ class ShowComments extends Component {
               >
                 <button>Show comment details</button>
               </Link>
-              <Link to={`/article/${this.props.id}/comment`}>
-                <button>Post a comment</button>
-              </Link>
             </div>
           )}
         </div>
@@ -59,7 +56,7 @@ class ShowComments extends Component {
             <ol className="smallCommentsList">
               {comments.map((comment) => {
                 return (
-                  <li claasName="smallCommentsList" key={comment.comment_id}>
+                  <li className="smallCommentsList" key={comment.comment_id}>
                     {comment.body}
                   </li>
                 );
