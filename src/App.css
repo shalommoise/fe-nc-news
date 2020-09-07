@@ -20,6 +20,17 @@ h1 {
 .comments {
   grid-area: comments;
 }
+.filterorder {
+  background-color: white;
+}
+
+.mainNavBar {
+  padding: 5px;
+
+  background-color: white;
+  border: solid blue;
+  border-radius: 25px;
+}
 .bigitem {
   padding: 10px;
   margin: 20px;
@@ -86,7 +97,9 @@ ul {
 }
 
 .navButton {
-  width: 33%;
+  margin: 3px;
+  width: 30%;
+  border: solid blue;
 }
 
 .topicsbutton {
