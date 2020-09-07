@@ -50,9 +50,11 @@ class Articles extends Component {
     });
   };
   didAuthorChange = (dataFromFilter) => {
+    console.log(dataFromFilter);
     this.setState({ author: dataFromFilter });
   };
   didTopicChange = (dataFromFilter) => {
+    console.log(dataFromFilter);
     this.setState({ topic: dataFromFilter });
   };
   ascOrDesc = (dataFromAscDescButton) => {
