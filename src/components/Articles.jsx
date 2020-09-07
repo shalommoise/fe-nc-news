@@ -14,6 +14,8 @@ class Articles extends Component {
     isOrder: false,
     isLoading: true,
     order: "desc",
+    topic: "",
+    author: "",
   };
 
   fetchArticles = (topic, author, sort_by, order) => {
@@ -61,8 +63,9 @@ class Articles extends Component {
     const { articles, isOrder, isLoading, order } = this.state;
     return (
       <div>
-        <div className="filterorder">
-          <AscDescButton order={order} isOrder={this.ascOrDesc} />
+        <div className="filters">
+          <TopicFilter isTopic={this.didTopicChange} />
+          <AuthorFilter isAuthor={this.didAuthorChange} />
         </div>
         <div className="filterorder">
           {!isOrder ? (
@@ -71,16 +74,18 @@ class Articles extends Component {
             </button>
           ) : (
             <div className="orders">
-              <OrderBy order={isOrder} />
+              <OrderBy
+                order={isOrder}
+                topic={this.props.topic}
+                author={this.props.author}
+              />
             </div>
           )}
         </div>
 
-        <div className="filters">
-          <TopicFilter isTopic={this.didTopicChange} />
-          <AuthorFilter isAuthor={this.didAuthorChange} />
+        <div className="filterorder">
+          <AscDescButton order={order} isOrder={this.ascOrDesc} />
         </div>
-
         {isLoading ? (
           <Loader />
         ) : (

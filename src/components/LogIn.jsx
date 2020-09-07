@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import * as api from "../utils/api";
 import Loader from "./Loader";
-// import UserInfo from "./UserInfo";
+import UserInfo from "./UserInfo";
 
 class LogIn extends Component {
   state = {
@@ -70,7 +70,7 @@ class LogIn extends Component {
               </button>
               <button onClick={this.logOut}>Log Out</button>
             </form>
-            {/* <UserInfo username={user.username} /> */}
+            <UserInfo username={user.username} />
           </div>
         ) : (
           <div className="mainUser">

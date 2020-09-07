@@ -12,10 +12,7 @@ class UserInfo extends Component {
       });
 
   componentDidUpdate(prevProps, PrevState) {
-    if (
-      prevProps.username !== this.props.username ||
-      PrevState.articles !== this.state.articles
-    ) {
+    if (prevProps.username !== this.props.username) {
       this.fetchArticle();
     }
   }

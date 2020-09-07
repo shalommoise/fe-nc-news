@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "@reach/router";
 import { whatTimeIsit } from "../utils/util_funcs";
-// import UserInfo from "./UserInfo";
+import UserInfo from "./UserInfo";
 import RecentlyPublished from "./RecentlyPublished";
 import MostTalkedAbout from "./MostTalkedAbout";
 import HighestRated from "./HighestRated";
@@ -45,7 +45,7 @@ const Home = (props) => {
               alt={`${username}'s avatar`}
             />
 
-            {/* {<UserInfo username={username} />} */}
+            {<UserInfo username={username} />}
 
             <form>
               <button onClick={logOut}>Log Out</button>

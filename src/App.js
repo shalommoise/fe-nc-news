@@ -32,6 +32,8 @@ class App extends Component {
           <Articles path="/articles/topics/:topic" />
           <Articles path="/articles/authors/:author" />
           <Articles path="/articles/sort/:sort_by/:order" />
+          <Articles path="/articles/sort/:sort_by/:order/topics/:topic/"></Articles>
+          <Articles path="/articles/sort/:sort_by/:order/authors/:author"></Articles>
           <SingleArticle
             path="/article/:article_id"
             loggedIn={this.state.loggedIn}
