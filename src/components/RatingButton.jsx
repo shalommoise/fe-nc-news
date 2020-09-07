@@ -1,8 +1,10 @@
 import React, { Component } from "react";
+
 import * as api from "../utils/api";
 class RatingButton extends Component {
   state = {
-    changeCount: 0,
+    changeCount: Number(localStorage.getItem("changeCount")),
+    count: 0,
   };
   changeVote = (count) => {
     api.updateVotes(this.props.article_id, count);
@@ -12,9 +14,23 @@ class RatingButton extends Component {
     const count = value === "yes" ? 1 : -1;
 
     this.setState((currentState) => {
-      return { changeCount: currentState.changeCount + count };
+      return {
+        changeCount: currentState.changeCount + count,
+        count,
+      };
     });
     api.updateVotes(this.props.id, count);
+  };
+  componentDidUpdate = (prevProps, prevState) => {
+    if (prevState.changeCount !== this.state.changeCount) {
+      localStorage.setItem("changeCount", this.state.changeCount);
+      this.setState({
+        changeCount: Number(localStorage.getItem("changeCount")),
+      });
+    }
+  };
+  componentDidMount = () => {
+    localStorage.setItem("changeCount", 0);
   };
 
   render() {
@@ -35,8 +51,9 @@ class RatingButton extends Component {
         >
           no :(
         </button>
-        <h5>Current Rating {this.props.votes + this.state.changeCount}</h5>
+        <h5>Current Rating {this.props.votes + this.state.count}</h5>
         <div>
+          {" "}
           {this.state.changeCount === 1 ? (
             <div>
               <img
@@ -61,7 +78,7 @@ class RatingButton extends Component {
                 alt="nuetral"
               />
             </div>
-          )}
+          )}{" "}
         </div>
       </div>
     );
