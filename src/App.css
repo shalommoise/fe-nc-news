@@ -37,12 +37,13 @@ h1 {
   background-color: white;
   border: solid blue;
   border-radius: 25px;
-  max-height: 300px;
 }
 #title {
   color: blue;
 }
 .details {
+  display: flex;
+  flex-direction: column;
   list-style: none;
   text-align: left;
 }
@@ -58,6 +59,8 @@ ul {
 
 .avatarPics {
   max-width: 150px;
+  max-height: 150px;
+  opacity: 0.8;
 }
 .userlist {
   margin: 5%;
@@ -79,23 +82,36 @@ ul {
   padding: 5px;
   border: solid blue;
   border-radius: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
-
+.featured {
+  padding-right: 25px;
+}
 .articleshow {
   max-width: 200px;
-  padding: 20px;
+  padding: 10px;
   margin: 10px;
+
   border: solid blue;
   border-radius: 10px;
   color: black;
   background-color: white;
+}
+.articleshow:hover {
+  opacity: 0.8;
 }
 
 .bigCommentItem {
   margin: 10px;
   border: dashed;
 }
-
+button:hover {
+  background-color: blue;
+  color: white;
+}
 .navButton {
   margin: 3px;
   width: 30%;
@@ -110,13 +126,19 @@ ul {
   width: 32%;
 }
 .orderbuttons {
-  width: 16%;
+  height: 60px;
+  width: 80px;
   background-color: blue;
   border-radius: 15px;
   margin: 2px;
   color: white;
 }
-
+.orderbuttons:hover {
+  background-color: grey;
+}
+.topicsbutton:hover {
+  background-color: grey;
+}
 .topic-images {
   width: 30%;
   max-height: 150px;
@@ -125,6 +147,9 @@ ul {
   border-radius: 25px;
   border: solid blue;
   background-color: blue;
+}
+.topic-images:hover {
+  opacity: 0.5;
 }
 .gallery {
   display: center;
@@ -136,8 +161,6 @@ ul {
   /* block-size: 20px; */
 }
 .filterorder {
-  /* display: flex; */
-  /* max-width: 200px; */
   padding: 3px;
   margin: 10px;
   border: solid blue;
@@ -153,7 +176,10 @@ ul {
   border-radius: 5px;
   color: white;
 }
-
+.desc:hover {
+  background-color: white;
+  color: blue;
+}
 button {
   padding: 5px;
   border-radius: 10px;
@@ -178,9 +204,32 @@ button {
 .commentdetails {
   margin: 10px;
   display: flex;
-
+  flex-direction: column;
   text-align: left;
 }
 .smallCommentsList {
   padding: 20px;
+}
+.sortchoices {
+  display: grid;
+  grid-template-columns: auto auto auto;
+}
+.allusers {
+  display: grid;
+  grid-template-columns: auto auto auto;
+}
+.userlist:hover {
+  margin: 5%;
+  padding: 2%;
+  border: solid blue;
+  border-radius: 25px;
+  background-color: lightblue;
+  color: rgb(27, 27, 85);
+}
+@media only screen and (max-width: 600px) {
+  .allusers {
+    display: flex;
+    flex-direction: column;
+    padding-right: 25px;
+  }
 }

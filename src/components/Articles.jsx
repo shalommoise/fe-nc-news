@@ -98,7 +98,7 @@ class Articles extends Component {
           />
         )}
         {!isLoading && (
-          <ul className="longlist">
+          <ul className="mainUser">
             {articles.map((article) => {
               return (
                 <li key={article.article_id} className="bigitem">

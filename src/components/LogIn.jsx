@@ -77,23 +77,21 @@ class LogIn extends Component {
             <h2>Pick a user</h2>
           </div>
         )}
-        <ul>
+        <ul className="allusers">
           {users.map((user) => {
             return (
-              <li key={user.username} className="userlist">
-                <button
-                  onClick={() => {
+              <li key={user.username} className="userlist"   onClick={() => {
                     this.setState({ user: user });
-                  }}
-                >
-                  <h4>Username: {user.username}</h4>
+                  }}>
+            
+                  <h4>{user.username}</h4>
 
                   <img
                     className="avatarPics"
                     src={user.avatar_url}
                     alt={`${user.username}'s avatar`}
                   />
-                </button>
+              
               </li>
             );
           })}

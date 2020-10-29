@@ -56,9 +56,9 @@ const Home = (props) => {
       </div>
       <div className="mainUser">
         <h2>
-          <u> Articles </u>
+          <u>Featured Articles </u>
         </h2>
-        <ul>
+        <ul className="featured">
           <Link to={`/article/${article_id}`}>
             <button className="articleshow" article_id={article_id}>
               <li>

@@ -42,7 +42,7 @@ class CommentDetails extends Component {
           <button>Post a comment</button>
         </Link>
         {isLoading && <Loader />}
-        <ol className="bigCommentsList">
+        <ul className="mainUser">
           {comments.map((comment) => {
             return (
               <li className="greeting" key={comment.comment_id}>
@@ -81,7 +81,7 @@ class CommentDetails extends Component {
               </li>
             );
           })}
-        </ol>
+        </ul>
       </div>
     );
   }
