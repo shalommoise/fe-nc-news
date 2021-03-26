@@ -12,18 +12,22 @@ class MostTalkedAbout extends Component {
     api.getAllArticles(topic, author, sort_by, order).then((articles) => {
       const article = articles[0];
       this.setState({ article, isLoading: false });
-    });
+    }).catch(()=>this.setState({err: true,  isLoading: false }));
 
   componentDidMount() {
     this.fetchArticles(null, null, "comment_count", null);
   }
   render() {
-    const { title, article_id } = this.state.article;
+    const {article, isLoading,err}  = this.state
+    const { title, article_id } = article;
     return (
       <div>
-        {this.state.isLoading ? (
+        {isLoading ? (
           <p>Loading ...</p>
-        ) : (
+        ) :  err ? (
+        <p></p>
+        
+        ):(
           <div>
             <Link to={`/article/${article_id}`}>
               <button className="articleshow" article_id={article_id}>

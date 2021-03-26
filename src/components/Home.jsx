@@ -25,7 +25,7 @@ const Home = (props) => {
           site for coders, cookers and footballers! Please have a look around,
           don't be shy :)
         </p>
-        <p>Be sure to comment on your favourite articles and leave a like :)</p>{" "}
+        <p>Be sure to comment on your favourite articles and leave a like :)</p>
         {!username && (
           <Link to="/account">
             <button> Please Log in to enjoy the full experience </button>
@@ -37,7 +37,7 @@ const Home = (props) => {
               Logged in as <i> {username}</i>
             </h3>
             <h5>
-              Name: <i> {name} </i>{" "}
+              Name: <i> {name} </i>
             </h5>
             <img
               className="avatarPics"

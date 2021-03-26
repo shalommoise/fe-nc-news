@@ -10,20 +10,26 @@ class RecentlyPublished extends Component {
 
   FetchArticles = () =>
     api.getAllArticles().then((articles) => {
-      const article = articles[0];
+       const article = articles[0];
+       
       this.setState({ article, isLoading: false });
-    });
+    }).catch(()=>this.setState({err: true,  isLoading: false }))
 
   componentDidMount() {
     this.FetchArticles();
   }
   render() {
-    const { title, article_id } = this.state.article;
+    const {article, isLoading,err}  = this.state
+    const { title, article_id } = article;
     return (
       <div>
-        {this.state.isLoading ? (
-          <p>Loading ...</p>
-        ) : (
+        {isLoading ? (
+          <p>Loading ...</p> 
+        ) : err ? (
+  
+        <p> Sorry, something's wrong on our end.</p>
+        
+        ): (
           <div>
             <Link to={`/article/${article_id}`}>
               <button className="articleshow" article_id={article_id}>
@@ -31,7 +37,9 @@ class RecentlyPublished extends Component {
               </button>
             </Link>
           </div>
-        )}
+        ) 
+      
+        }
       </div>
     );
   }

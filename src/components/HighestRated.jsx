@@ -11,19 +11,23 @@ class HighestRated extends Component {
   fetchArticles = (topic, author, sort_by, order) =>
     api.getAllArticles(topic, author, sort_by, order).then((articles) => {
       const article = articles[0];
-      this.setState({ article, isLoading: false });
-    });
+      this.setState({ article, isLoading: false })
+    }).catch(()=>this.setState({err: true,  isLoading: false }));
 
   componentDidMount() {
     this.fetchArticles(null, null, "votes", null);
   }
   render() {
-    const { title, article_id } = this.state.article;
+    const {article, isLoading,err}  = this.state
+    const { title, article_id } = article;
     return (
       <div>
-        {this.state.isLoading ? (
-          <p>Loading ...</p>
-        ) : (
+        {isLoading ? (
+          <p onClick={()=>console.log(this.state)}>Loading ...</p>
+        )  :  err ? (
+        <p></p>
+        
+        ): (
           <div>
             <Link to={`/article/${article_id}`}>
               <button className="articleshow" article_id={article_id}>
