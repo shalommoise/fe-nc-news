@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import * as api from "../utils/api";
 import { Link } from "@reach/router";
 
-// import Loader from "./Loader";
+import Loader from "./Loader";
 class ShowComments extends Component {
   state = {
     comments: [],
@@ -17,7 +17,7 @@ class ShowComments extends Component {
   };
 
   handleClick = () => {
-    this.fetchComments(this.props.id);
+    this.fetchComments(this.props.id)
   };
 
   hideComments = () => {
@@ -53,6 +53,9 @@ class ShowComments extends Component {
 
         {this.state.seeComments && (
           <div>
+            {!comments.length ? (
+                 <Loader/>
+            ): 
             <ol className="smallCommentsList">
               {comments.map((comment) => {
                 return (
@@ -61,7 +64,7 @@ class ShowComments extends Component {
                   </li>
                 );
               })}
-            </ol>
+            </ol>}
           </div>
         )}
       </div>

@@ -47,7 +47,7 @@ export const getCommentsOfArticle = (article_id) => {
       `https://nc-news-shalom.herokuapp.com/api/articles/${article_id}/comments`
     )
     .then(({ data }) => {
-      return data.comments.comments;
+      return data.comments;
     });
 };
 
